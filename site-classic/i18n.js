@@ -10,9 +10,9 @@ const ru = {
     contact: "Контакты", cta: "Оставить заявку", phone: "+375 (29) 000-00-00",
   },
   hero: {
-    badge: "Промышленная металлообработка с 2008 года", // TODO: год основания
+    badge: "Промышленная металлообработка с 2024 года", // TODO: год основания
     title: "Производство металлоизделий для бизнеса — точно в срок",
-    subtitle: "Токарные и фрезерные работы на ЧПУ, лазерная резка, сварка и металлоконструкции. Изготавливаем детали и конструкции по чертежам заказчика — от опытных партий до серийных заказов для промышленных предприятий.",
+    subtitle: "Токарные и фрезерные работы на ЧПУ. Изготавливаем детали и конструкции по чертежам заказчика — от опытных партий до серийных заказов для промышленных предприятий.",
     ctaPrimary: "Получить расчёт", ctaSecondary: "Наши услуги",
     note: "Ответ на заявку с чертежами — в течение 24 часов",
   },
@@ -20,10 +20,10 @@ const ru = {
     heading: "Предприятие и производственные мощности",
     lead: "ООО «ГлобалМеталлХолд» — специализированное производство в г. Логойск (Республика Беларусь). Мы обслуживаем промышленные предприятия, строительные организации и OEM-производителей, обеспечивая стабильное качество и полный комплект документов для работы с юридическими лицами.",
     items: [
-      ["3 500", "м² производственных площадей"], // TODO: фактическая площадь
-      ["60+", "единиц оборудования, включая станки с ЧПУ"], // TODO
-      ["150", "тонн металла обрабатываем ежемесячно"], // TODO
-      ["120+", "корпоративных клиентов на постоянном обслуживании"], // TODO
+      ["2 000", "м² производственных площадей"], // TODO: фактическая площадь
+      ["15+", "единиц оборудования, включая станки с ЧПУ"], // TODO
+      ["70", "тонн металла обрабатываем ежемесячно"], // TODO
+      ["2+", "корпоративных клиентов на постоянном обслуживании"], // TODO
     ],
   },
   services: {
@@ -116,15 +116,15 @@ const ru = {
     addressLabel: "Адрес производства",
     address: "Республика Беларусь, Минская область, г. Логойск", // TODO: точный адрес
     phoneLabel: "Телефон", emailLabel: "Email для заявок",
-    email: "sales@globalmetalhold.by", // TODO: реальная почта
-    hoursLabel: "Режим работы", hours: "Пн–Пт: 8:30–17:30",
+    email: "sales@gmhold.com", // TODO: реальная почта
+    hoursLabel: "Режим работы", hours: "Пн–Пт: 8:00–16:45",
     mapLabel: "Карта: г. Логойск",
     // TODO: замените iframe-блок на актуальную карту Яндекс/Google с меткой предприятия.
   },
   footer: {
-    about: "Промышленная металлообработка на заказ: токарные и фрезерные работы на ЧПУ, лазерная резка, сварка, металлоконструкции и порошковая покраска.",
+    about: "Промышленная металлообработка на заказ: токарные и фрезерные работы на ЧПУ.",
     sectionsTitle: "Разделы", contactsTitle: "Контакты", requisitesTitle: "Реквизиты",
-    requisites: "ООО «ГлобалМеталлХолд» · УНП XXXXXXXXX · юр. адрес: Минская обл., г. Логойск", // TODO: реальные реквизиты
+    requisites: "ООО «ГлобалМеталлХолд» · УНП 690876573 · юр. адрес: Минская обл., г. Логойск", // TODO: реальные реквизиты
     rights: "Все права защищены.",
   },
 };
@@ -138,7 +138,7 @@ const en = {
     contact: "Contacts", cta: "Request a quote", phone: "+375 (29) 000-00-00",
   },
   hero: {
-    badge: "Industrial metalworking since 2008",
+    badge: "Industrial metalworking since 2024",
     title: "Custom metal fabrication for business — on time, to spec",
     subtitle: "CNC turning and milling, laser cutting, welding and steel structures. We manufacture parts and structures from customer drawings — from prototype batches to series orders for industrial enterprises.",
     ctaPrimary: "Get a quote", ctaSecondary: "Our services",
@@ -148,10 +148,10 @@ const en = {
     heading: "The company and production capacity",
     lead: "GlobalMetalHold LLC is a specialized manufacturing facility in Logoisk, Belarus. We serve industrial plants, construction companies and OEM manufacturers with stable quality and full documentation for B2B cooperation.",
     items: [
-      ["3,500", "m² of production space"],
-      ["60+", "machines, including CNC"],
-      ["150", "tons of metal processed monthly"],
-      ["120+", "corporate clients on service"],
+      ["2 000", "m² of production space"],
+      ["15+", "machines, including CNC"],
+      ["70", "tons of metal processed monthly"],
+      ["2+", "corporate clients on service"],
     ],
   },
   services: {
@@ -182,7 +182,7 @@ const en = {
     items: [
       { icon: "target", title: "Precision & stable quality", text: "CNC machines, incoming material inspection and QC at every stage. Deviations stay within your tolerances." },
       { icon: "clock", title: "Deadlines kept", text: "Own full-cycle production with scheduled loading. Deadlines are fixed by contract with liability for delay." },
-      { icon: "medal", title: "15+ years of experience", text: "Thousands of parts delivered for mechanical engineering, construction, agriculture and energy across Belarus and export." },
+      { icon: "medal", title: "1+ years of experience", text: "Thousands of parts delivered for mechanical engineering, construction, agriculture and energy across Belarus and export." },
       { icon: "docs", title: "B2B-ready paperwork", text: "Contract, invoice, UPD, deferred payment, tender participation. Full document support for legal entities." },
       { icon: "draft", title: "Made from your drawings", text: "We work from drawings, 3D models and samples, with engineering review and drawing adjustment if needed." },
       { icon: "truck", title: "Series & logistics", text: "From a single prototype to regular series with finished-goods stock. Delivery across Belarus and EAEU countries." },
@@ -242,14 +242,14 @@ const en = {
     addressLabel: "Production address",
     address: "Logoisk, Minsk region, Republic of Belarus",
     phoneLabel: "Phone", emailLabel: "Email for requests",
-    email: "sales@globalmetalhold.by",
-    hoursLabel: "Working hours", hours: "Mon–Fri: 8:30–17:30",
+    email: "sales@gmhold.com",
+    hoursLabel: "Working hours", hours: "Mon–Fri: 8:00–16:45",
     mapLabel: "Map: Logoisk",
   },
   footer: {
     about: "Custom industrial metalworking: CNC turning and milling, laser cutting, welding, steel structures and powder coating.",
     sectionsTitle: "Sections", contactsTitle: "Contacts", requisitesTitle: "Company details",
-    requisites: "GlobalMetalHold LLC · UNP XXXXXXXXX · registered address: Logoisk, Minsk region",
+    requisites: "GlobalMetalHold LLC · UNP 690876573 · registered address: Logoisk, Minsk region",
     rights: "All rights reserved.",
   },
 };
