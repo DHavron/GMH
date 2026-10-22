@@ -1,14 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
+import "./globals.css";
 import { allLocales, defaultLocale, getDictionary, isLocale, otherLocale, type Locale } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StaticPageLinks from "@/components/StaticPageLinks";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin", "cyrillic"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin", "cyrillic"] });
+// true при сборке со статическим экспортом (DEPLOY_BUILD=1)
+const STATIC_EXPORT = process.env.DEPLOY_BUILD === "1";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -17,11 +17,23 @@ export const viewport: Viewport = {
 };
 
 // В деплой-сборке layout применяется и к корню (""), где locale отсутствует.
-type LayoutContext = { params?: Promise<{ locale?: string }> };
+// В статической деплой-сборке App Router не поддерживает dynamic params в
+// layout (generateStaticParams задаётся только на странице) — локаль берём
+// из пути запроса. В серверном режиме — стандартные params.
+type LayoutContext = {
+  params?: Promise<{ locale?: string }>;
+  pathname?: string; // инжектируется через cloneElement в app/site-root.tsx
+};
+
+function localeFromPath(pathname?: string): string | undefined {
+  const m = pathname?.match(/^\/(ru|en)(\/|$|\.)/);
+  return m ? m[1] : undefined;
+}
 
 /** Метаданные страницы (title/description/OG/hreflang) из словаря локали */
-export async function generateMetadata({ params }: LayoutContext): Promise<Metadata> {
-  const p1 = await params; const raw: string = (p1 && p1.locale) || "ru";
+export async function generateMetadata({ params, pathname }: LayoutContext): Promise<Metadata> {
+  const p1 = await params;
+  const raw: string = (p1 && p1.locale) || "";
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const strings = getDictionary(locale);
   const url = `${SITE.url}/${locale}`;
@@ -101,18 +113,22 @@ function OrganizationJsonLd({ locale }: { locale: Locale }) {
 export default async function LocaleLayout({
   children,
   params,
+  pathname,
 }: {
   children: ReactNode;
   params?: Promise<{ locale?: string }>;
+  pathname?: string;
 }) {
-  const p1 = await params; const raw: string = (p1 && p1.locale) || "ru";
+  const p1 = await params;
+  const raw: string = (p1 && p1.locale) || localeFromPath(pathname) || "ru";
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const strings = getDictionary(locale);
   const other = otherLocale(locale);
 
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang={locale} className="h-full antialiased">
       <body className="flex min-h-full flex-col bg-white text-graphite-900">
+        <StaticPageLinks enabled={STATIC_EXPORT} />
         {/* Доступность: ссылка «к основному содержимому» */}
         <a
           href="#main"
