@@ -118,7 +118,7 @@ export default function LeadForm({ strings, locale }: { strings: SiteStrings; lo
       payload.append("locale", locale);
       if (drawing) payload.append("drawing", drawing, drawing.name);
 
-      const res = await fetch(`/${locale}/api/lead`, {
+      const res = await fetch("/api/lead", {
         method: "POST",
         body: payload,
       });
