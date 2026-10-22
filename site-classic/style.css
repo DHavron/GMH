@@ -48,13 +48,17 @@ button, input, textarea, select { font: inherit; color: inherit; }
 }
 .header-inner { display: flex; align-items: center; gap: 22px; min-height: 72px; }
 .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.3px; }
-/* Логотип: знак logo-mark.svg + словесная часть */
-.logo-img { width: 40px; height: 40px; flex-shrink: 0; filter: drop-shadow(0 2px 6px rgba(255, 215, 0, .18)); transition: transform .25s ease; }
-.logo:hover .logo-img { transform: rotate(-8deg) scale(1.06); }
-.logo-wordmark { display: flex; flex-direction: column; line-height: 1.15; white-space: nowrap; }
-#brand-name { font-size: 17px; font-weight: 800; letter-spacing: .3px; background: linear-gradient(100deg, #fff 30%, var(--gold) 55%, var(--gold-dark) 80%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--gold); }
-.logo-wordmark small { font-size: 10px; font-weight: 500; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; }
-@media (max-width: 480px) { .logo-wordmark small { display: none; } }
+/* Фирменный логотип gmh.png (TODO: при необходимости заменить файл) */
+.logo-img {
+  width: 44px; height: 44px; border-radius: 10px; object-fit: contain; flex-shrink: 0;
+  padding: 5px; box-sizing: border-box; background: var(--grad-gold);
+  filter: drop-shadow(0 2px 8px rgba(255, 215, 0, .25));
+  transition: transform .25s ease;
+}
+.logo:hover .logo-img { transform: scale(1.06); }
+.site-footer .logo-img { background: #fff; } /* белый плацдарм на тёмном футере */
+.logo-text { font-size: 17px; line-height: 1.15; white-space: nowrap; }
+.logo-text small { display: block; font-size: 10px; font-weight: 500; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; }
 
 .main-nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
 .main-nav a {
@@ -97,6 +101,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 @media (max-width: 560px) {
   .header-actions .btn { display: none; }
   .logo-text { font-size: 15px; }
+  .logo-img { width: 36px; height: 36px; }
 }
 
 /* ---------- Hero ---------- */

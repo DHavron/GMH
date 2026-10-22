@@ -4,20 +4,9 @@
 
   var D = window.I18N;
   var PHONE_TEL = "+375290000000"; // TODO: реальный телефон для tel:-ссылки
-  var EMAIL = "sales@globalmetalhold.by"; // TODO: реальная почта
+  var EMAIL = "sales@gmhold.com"; // TODO: реальная почта
   var ALLOWED_EXT = ["pdf", "dwg", "dxf", "zip", "rar"];
   var MAX_SIZE = 20 * 1024 * 1024; // 20 МБ
-
-  /* ---------- Логотип: текстовая часть зависит от языка ---------- */
-  function setBrand(lang) {
-    var pairs = [["brand-name", "brand-tag"], ["brand-name-f", "brand-tag-f"]];
-    for (var i = 0; i < pairs.length; i++) {
-      var n = document.getElementById(pairs[i][0]), tg = document.getElementById(pairs[i][1]);
-      if (!n || !tg) continue;
-      if (lang === "en") { n.textContent = "GlobalMetalHold"; tg.textContent = "custom metalworking"; }
-      else { n.textContent = "ГлобалМеталлХолд"; tg.textContent = "металлообработка на заказ"; }
-    }
-  }
 
   /* ---------- SVG-иконки (плейсхолдеры под фирменные) ---------- */
   function svg(paths, vb) {
@@ -282,7 +271,7 @@
     }).join("");
     document.getElementById("footer-about").textContent = t.footer.about;
     document.getElementById("footer-requisites").textContent = t.footer.requisites;
-    document.getElementById("footer-rights").textContent = "© 2008–2026 ООО «ГлобалМеталлХолд». " + t.footer.rights;
+    document.getElementById("footer-rights").textContent = "© 2024–2026 ООО «ГлобалМеталлХолд». " + t.footer.rights;
     document.getElementById("skip-link").textContent = t.skip;
     document.querySelectorAll("[data-i18n]").forEach(function (n) {
       var key = n.getAttribute("data-i18n").split(".");
@@ -318,7 +307,6 @@
       b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
     });
     try { localStorage.setItem("gmh-lang", lang); } catch (e) {}
-    setBrand(lang);
     chosenFile = null;
     render(t);
   }
