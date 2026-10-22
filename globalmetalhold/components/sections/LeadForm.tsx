@@ -3,7 +3,7 @@
 import { useCallback, useRef, useState, type ChangeEvent, type DragEvent, type FormEvent } from "react";
 import type { Locale } from "@/lib/i18n/config";
 import type { SiteStrings } from "@/lib/i18n/en";
-import { UPLOAD } from "@/lib/site";
+import { SITE, UPLOAD } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import {
   FileIcon,
@@ -16,6 +16,9 @@ import {
 type FieldErrors = Partial<
   Record<"name" | "phone" | "email" | "drawing", string>
 >;
+
+// true в статической деплой-сборке: API нет → отправка через mailto
+const STATIC_EXPORT = process.env.DEPLOY_BUILD === "1";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^\+?[\d\s()\-]{7,20}$/;
@@ -118,6 +121,28 @@ export default function LeadForm({ strings, locale }: { strings: SiteStrings; lo
       payload.append("locale", locale);
       if (drawing) payload.append("drawing", drawing, drawing.name);
 
+      // В статической версии сервера нет: открываем почтовый клиент с письмом
+      // (чертёж нужно приложить вручную) и показываем экран успеха.
+      if (STATIC_EXPORT) {
+        const subject = encodeURIComponent(
+          (locale === "ru" ? "Заявка с сайта: " : "Website lead: ") + (company || name)
+        );
+        const body = encodeURIComponent(
+          [
+            locale === "ru" ? "Имя" : "Name", ": " + name,
+            locale === "ru" ? "Телефон" : "Phone", ": " + phone,
+            "Email: " + email,
+            company ? ((locale === "ru" ? "Компания" : "Company") + ": " + company) : "",
+            comment ? ((locale === "ru" ? "Комментарий" : "Comment") + ": " + comment) : "",
+            drawing ? ((locale === "ru" ? "Файл чертежа" : "Drawing file") + ": " + drawing.name + " (" + formatBytes(drawing.size) + ")") : "",
+          ]
+            .filter(Boolean)
+            .join("\n")
+        );
+        window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
+        setStatus("success");
+        return;
+      }
       const res = await fetch("/api/lead", {
         method: "POST",
         body: payload,
